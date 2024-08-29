@@ -1,0 +1,15 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: "Roboto", sans-serif;
+    color: #fff;
+    --light-color: "#DDC9B4";
+    --khaki-color: "#BCAC9B";
+    --navi-color: "#2A3D45";
+    --rose-color: "#C17C74";
+    outline: invert;
+}
+html{
+    background-color: whitesmoke;
+}
