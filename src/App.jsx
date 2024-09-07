@@ -73,8 +73,8 @@ useEffect(()=>{
           <Input color={error? "red" : colors.darkGreen} required onChange={(event)=>handlePropertiesChange(event, "depth")} type='number'/>
           <Text color={colors.darkGreen} size={1.5}>Conseeled Support:</Text>
           <Checkbox type='checkbox' onClick={(e)=>handleConseeled(e)}/>
-          {conseeled ? <Text color={colors.darkGreen}>For Heavy items:</Text> : null}
-          {conseeled ? <Checkbox type='checkbox' onClick={(e)=>handleConseeled(e)}/> : null}
+          {conseeled && <Text color={colors.darkGreen}>For Heavy items:</Text>}
+          {conseeled && <Checkbox type='checkbox' onClick={(e)=>handleConseeled(e)}/>}
           </Grid>
         </Card>
         {error && <Text color={"red"} weight={"500"}>Please check your parameters, there seems to be a problem!</Text>}
