@@ -1,7 +1,7 @@
 export let priceConfig = {
     heavyDibblePrice: 40,
     lightDibblePrice: 30,
-    heavyDibbleDistance: (100/3),
+    heavyDibbleDistance: 25,
     lightDibbleDistance: 25,
     woodPrice:{level1_14cm: 1, level2_14cm: 1.2, level3_14cm: 1.5, level4_14cm: 1.75, level1_27cm: 1.4,
         level2_27cm: 1.68, level3_27cm: 2.1, level4_27cm: 2.45}, max_depth: 27
@@ -22,13 +22,23 @@ if (typeof(shelfPrice) != "number"){
 }
 let installationDetails = {price:0, dibbles:0};
 if (conseeledInstallation){
-    const installationDetailsCalc = calculateInstallationPrice(isHeavyDibble, shelfLength);
-    installationDetails = {...installationDetailsCalc}
+    const installationDetailsCalc = calculateInstallationPrice(isHeavyDibble, shelfLength, shelfDepth);
+    if (installationDetailsCalc.dibbles >= 2){
+        installationDetails = {...installationDetailsCalc}
+    }else{
+        installationDetailsCalc.dibbles = 2
+        installationDetails = {...installationDetailsCalc}
+    }
 }
 return {total:(shelfPrice + installationDetails.price), shelfPrice: shelfPrice, installationPrice: installationDetails.price, amountOfDibbles: installationDetails.dibbles};
 };
-const calculateInstallationPrice = (isHeavyDibble, length) =>{
-    return isHeavyDibble ? {price:(Math.round(length/priceConfig.heavyDibbleDistance) * priceConfig.heavyDibblePrice), dibbles:Math.round(length/priceConfig.heavyDibbleDistance)} : {price:(Math.round(length/priceConfig.lightDibbleDistance) * priceConfig.lightDibblePrice), dibbles: Math.round(length/priceConfig.lightDibbleDistance)};
+const calculateInstallationPrice = (isHeavyDibble, length, shelfDepth) =>{
+    console.log(`heavy: ${isHeavyDibble}, heavy distance: ${priceConfig.heavyDibbleDistance}, light distance: ${priceConfig.lightDibbleDistance}`)
+    let price =0;
+    if (shelfDepth <14 || (shelfDepth > 14 && shelfDepth < 27)){
+        price = price + 30;
+    }
+    return isHeavyDibble ? {price:(Math.round(length/priceConfig.heavyDibbleDistance) * priceConfig.heavyDibblePrice + price), dibbles:Math.round(length/priceConfig.heavyDibbleDistance)} : {price:(Math.round(length/priceConfig.lightDibbleDistance) * priceConfig.lightDibblePrice + price), dibbles: Math.round(length/priceConfig.lightDibbleDistance)};
 }
 const calculateShelfPrice = (shelfLength, shelfDepth)=>{
     let price = 0;
@@ -61,9 +71,5 @@ const calculateShelfPrice = (shelfLength, shelfDepth)=>{
     else{
         return "inapropriate parameter input."
     }
-    if (shelfDepth <14 || (shelfDepth>14 && shelfDepth<27)){
-        return price +30
-    }else{
-        return price;
-    }
+    return price;
 }

@@ -15,6 +15,7 @@ height: 2rem;
 align-items: center;
 justify-content: center;
 overflow-wrap: break-word;
+padding: 0.5rem 0.7rem;
 &:hover {
 background: ${colors.lightGreen};
 }

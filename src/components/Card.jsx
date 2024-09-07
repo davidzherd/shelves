@@ -3,7 +3,7 @@ import { colors } from "../assets/siteConfig";
 
 export const Card = styled.div`
 display: flex;
-margin-top: 1rem;
+margin-block: 1rem;
 background-color: white;
 box-shadow: 1px 2px 3px ${colors.navi};
 padding: 1rem;
