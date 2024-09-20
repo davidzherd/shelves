@@ -35,13 +35,12 @@ return {total:(shelfPrice + installationDetails.price), shelfPrice: shelfPrice, 
 const calculateInstallationPrice = (isHeavyDibble, length, shelfDepth) =>{
     console.log(`heavy: ${isHeavyDibble}, heavy distance: ${priceConfig.heavyDibbleDistance}, light distance: ${priceConfig.lightDibbleDistance}`)
     let price =0;
-    if (shelfDepth <14 || (shelfDepth > 14 && shelfDepth < 27)){
-        price = price + 30;
-    }
+    
     return isHeavyDibble ? {price:(Math.round(length/priceConfig.heavyDibbleDistance) * priceConfig.heavyDibblePrice + price), dibbles:Math.round(length/priceConfig.heavyDibbleDistance)} : {price:(Math.round(length/priceConfig.lightDibbleDistance) * priceConfig.lightDibblePrice + price), dibbles: Math.round(length/priceConfig.lightDibbleDistance)};
 }
 const calculateShelfPrice = (shelfLength, shelfDepth)=>{
     let price = 0;
+    
     if (shelfDepth < 15){
         if (shelfLength <= 100){
             price = shelfLength * priceConfig.woodPrice.level1_14cm;
@@ -70,6 +69,9 @@ const calculateShelfPrice = (shelfLength, shelfDepth)=>{
     }
     else{
         return "inapropriate parameter input."
+    }
+    if (shelfDepth <14 || (shelfDepth > 14 && shelfDepth < 27)){
+        price = price + 30;
     }
     return price;
 }
