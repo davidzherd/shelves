@@ -18,7 +18,6 @@ const ChangeSettings = ({close}) => {
         <Text color={colors.navi} weight={"300"}>But you will be glad to know that your authentication passed succesfully!</Text>
         <ConstructionState/>
         <Button style={{background:"ffe700"}} onClick={close}>Yay, take me back!</Button>
-
         </div>
       </Card>
   )
