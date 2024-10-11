@@ -16,7 +16,6 @@ export const getData = async()=>{
     priceConfig = {...newConfig};
 }
 export const getAuth = async(email, password)=>{
-    console.log("email =",email, " password =",password)
     const request = await fetch(`https://x8ki-letl-twmt.n7.xano.io/api:sQvFNZLW/auth/login?email=${email}&password=${password}`,{method: "post"});
     const authToken = await request.json();
     return authToken.authToken;
