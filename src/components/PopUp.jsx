@@ -5,8 +5,7 @@ import { colors } from "../assets/siteConfig";
 import { Text } from "./Text";
 import { useState } from "react";
 
-
-const StyledPopUp = styled.div`
+export const StyledPopUp = styled.div`
     height: 100vh;
     width: 100vw;
     background: rgba(0, 0, 0, 0.7);
@@ -15,8 +14,19 @@ const StyledPopUp = styled.div`
     justify-content: center;
     z-index: 10;
     position: absolute;
-    top:0;
+    bottom:${props=>props.bottom ?? "0"};
     left: 0;
+    transition: all 0.3s;
+    @media(max-width:550px){
+    .message{
+    width: 100vw;
+    height: 100vh;
+    border-radius: 0;
+    }
+    }
+    .cursor:hover{
+    cursor: pointer;
+    }
 `;
 export const PopUp = ({ action })=>{
     const handleSelection = (selection)=>{

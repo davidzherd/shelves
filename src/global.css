@@ -3,7 +3,6 @@
     margin: 0;
     padding: 0;
     font-family: "Roboto", sans-serif;
-    color: #fff;
     --light-color: "#DDC9B4";
     --khaki-color: "#BCAC9B";
     --navi-color: "#2A3D45";
@@ -12,4 +11,5 @@
 }
 html{
     background-color: whitesmoke;
+    overflow: hidden;
 }

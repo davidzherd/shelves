@@ -15,6 +15,20 @@ export const getData = async()=>{
     const newConfig = {heavyDibblePrice: parseFloat(data.heavy_dibble_price_10), lightDibblePrice: parseFloat(data.light_dibble_price), heavyDibbleDistance: parseFloat(data.heavy_10_dibble_distance), lightDibbleDistance: parseFloat(data.light_dibble_distance), woodPrice:{level1_14cm: parseFloat(data.wood_price.level1_14cm), level2_14cm: parseFloat(data.wood_price.level2_14cm), level3_14cm: parseFloat(data.wood_price.level3_14cm), level4_14cm: parseFloat(data.wood_price.level4_14cm), level1_27cm: parseFloat(data.wood_price.level1_27cm), level2_27cm: parseFloat(data.wood_price.level2_27cm), level3_27cm: parseFloat(data.wood_price.level3_27cm), level4_27cm: parseFloat(data.wood_price.level4_27cm)}, max_depth: data.max_depth };
     priceConfig = {...newConfig};
 }
+export const getAuth = async(email, password)=>{
+    console.log("email =",email, " password =",password)
+    const request = await fetch(`https://x8ki-letl-twmt.n7.xano.io/api:sQvFNZLW/auth/login?email=${email}&password=${password}`,{method: "post"});
+    const authToken = await request.json();
+    return authToken.authToken;
+}
+export const validateAuth = async(token)=>{
+    const request = await fetch("https://x8ki-letl-twmt.n7.xano.io/api:sQvFNZLW/auth/me",{headers:{
+        'Authorization': ('Bearer ' + token)
+    }});
+    const valid = request.status;
+    return valid;
+}
+
 export const calculateTotalPrice = (shelfLength, shelfDepth, conseeledInstallation, isHeavyDibble) =>{
 const shelfPrice = calculateShelfPrice(shelfLength, shelfDepth);
 if (typeof(shelfPrice) != "number"){

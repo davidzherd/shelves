@@ -9,6 +9,7 @@ import { Input } from './components/Input';
 import { calculateTotalPrice, getData, priceConfig } from './assets/logic';
 import { Grid } from './components/Grid';
 import { Checkbox } from './components/Checkbox';
+import Settings from './components/settings';
 
 function App() {
 const [shelfProperties, setShelfProperties] = useState({length:0, depth:0});
@@ -18,6 +19,9 @@ const [heavyDibble, setHeavyDibble] = useState(false);
 const [data, setData] = useState(false);
 const [maxDepth, setMaxDepth] = useState(27);
 const [price, setPrice] = useState({total:0, shelfPrice:0, installationPrice: 0, amountOfDibbles: 0});
+const [openedSettings, setOpenedSettings] = useState(false);
+
+
 const handleConseeled = (event)=>{
   setConseeled(event.target.checked);
 }
@@ -59,9 +63,11 @@ useEffect(()=>{
     return
   }
 },[data]);
+
+
   return (
     <>
-    <Navbar/>
+    <Navbar settingsAction={()=>setOpenedSettings(prev=>!prev)}/>
     <Wrapper background={"transparent"}>
       <div style={{marginTop: "4rem"}}>
         <Text size={4} shadow color={colors.lightGreen}>SHELF PRICE CALCULATOR</Text>
@@ -86,6 +92,7 @@ useEffect(()=>{
         </Card>}
       </div>
     </Wrapper>
+    <Settings bottom={openedSettings? "0": "-2000px"} settingsAction={()=>setOpenedSettings(prev=>!prev)}/>
     </>
   )
 }
