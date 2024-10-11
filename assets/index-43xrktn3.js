@@ -150,6 +150,9 @@ background: ${M.lightGreen};
     bottom:${e=>e.bottom??"0"};
     left: 0;
     transition: all 0.3s;
+    .message{
+    width:800px;
+    }
     @media(max-width:550px){
     .message{
     width: 100vw;
