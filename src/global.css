@@ -12,4 +12,6 @@
 html{
     background-color: whitesmoke;
     overflow: hidden;
+    width: 100vw;
+    height: 100dvh;
 }
