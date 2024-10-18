@@ -1,8 +1,10 @@
-import React, { useState } from 'react'
+import React, { useContext } from 'react'
 import styled from 'styled-components'
 import { colors } from '../assets/siteConfig';
 import { Text } from './Text';
-import { IoMdSettings } from "react-icons/io";
+import { AdminContext } from '../Context';
+import { IoMdSettings } from 'react-icons/io';
+
 const StyledNavbar = styled.div`
 display: flex;
 position: fixed;
@@ -37,11 +39,12 @@ justify-content: space-between;
   }
 `;
 const Navbar = ({settingsAction})=> {
+  const adminCtx = useContext(AdminContext)
   return (
     <StyledNavbar>
         <Text size= {2} shadow weight= "300">Make a Shelf</Text>
         <div className='settings' onClick={settingsAction}>
-        Settings
+        {!adminCtx ? "Login" : "You are logged in!"}
         <IoMdSettings className='icon'/>
         </div>
 

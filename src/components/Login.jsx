@@ -36,7 +36,8 @@ const Login = ({setTokenFunction,close}) => {
         <Text color={colors.navi} weight={"500"}>Enter Password:</Text>
         <Input type="password" style={{width: "70%"}} onChange={(e)=>handleInput("password",e)}></Input>
         </div>
-        <div style={{display: "flex", justifyContent: "center"}}>
+        <div style={{display: "flex", justifyContent: "center", gap:"0.5rem"}}>
+          <Button onClick={close}>Cancel</Button>
           <Button onClick={handleLogin} selected>Log in</Button>
         </div>
       </Card>
