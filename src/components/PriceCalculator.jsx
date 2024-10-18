@@ -7,6 +7,7 @@ import { calculateTotalPrice, getData, priceConfig } from '../assets/logic';
 import { Grid } from './Grid';
 import { Checkbox } from './Checkbox';
 import { colors } from '../assets/siteConfig';
+import { TiDocumentText } from "react-icons/ti";
 
 const PriceCalculator = () => {
     const [shelfProperties, setShelfProperties] = useState({length:0, depth:0});
@@ -64,7 +65,8 @@ const PriceCalculator = () => {
           <Wrapper background={"transparent"}>
             <div style={{marginTop: "4rem", width:"min(90%, 800px)", display:"flex", flexDirection:"column"}}>
               <Text style={{alignSelf:"center"}} size={3} color={colors.lightGreen}>SHELF PRICE CALCULATOR</Text>
-              <Card>
+              <Card style={{flexDirection:"column"}}>
+              <Text style={{marginBottom:"1rem"}} color={colors.darkGreen} weight={"500"} size={2}>Order Details:</Text>
                 <Grid $columnsTemplate = {"1fr 1fr"}>
                 <Text color={colors.navi} weight={"500"}>Shelf Length (cm):</Text>
                 <Input required onChange={(event)=>handlePropertiesChange(event, "length")} type='number'/>
@@ -76,7 +78,7 @@ const PriceCalculator = () => {
               </Card>
               {error && <Text color={"red"} weight={"500"}>Please check your parameters, there seems to be a problem!</Text>}
               {!error && <Card style={{flexDirection: "column", gap: "0.8rem"}}>
-                <Text style={{marginBottom:"1rem"}} color={colors.darkGreen} weight={"500"} size={2}>Final Bill:</Text>
+                <Text style={{marginBottom:"1rem", display:"flex", alignItems:"center", justifyContent:"space-between"}} color={colors.darkGreen} weight={"500"} size={2}>Final Bill:<TiDocumentText style={{scale:"1.5"}} /></Text>
                 <Text color={colors.navi} weight={"500"}>Wood price: <span style={{color: "limegreen", fontWeight:"400"}}>{price.shelfPrice.toFixed(2)}&#8362;</span></Text>
                 {conseeled && <Text color={colors.navi} weight={"500"}>Amount of dibbles: <span style={{color: colors.orange, fontWeight:"400"}}>{price.amountOfDibbles}</span></Text>}
                 {conseeled && <Text color={colors.navi} weight={"500"}>Type of dibbles: <span style={{color: colors.orange, fontWeight:"400"}}>{heavyDibble? "Heavy" : "Light"}</span></Text>}
