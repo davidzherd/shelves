@@ -45,10 +45,9 @@ if (conseeledInstallation){
 }
 return {total:(shelfPrice + installationDetails.price), shelfPrice: shelfPrice, installationPrice: installationDetails.price, amountOfDibbles: installationDetails.dibbles};
 };
-const calculateInstallationPrice = (isHeavyDibble, length, shelfDepth) =>{
-    let price =0;
+const calculateInstallationPrice = (isHeavyDibble, length) =>{
     
-    return isHeavyDibble ? {price:(Math.round(length/priceConfig.heavyDibbleDistance) * priceConfig.heavyDibblePrice + price), dibbles:Math.round(length/priceConfig.heavyDibbleDistance)} : {price:(Math.round(length/priceConfig.lightDibbleDistance) * priceConfig.lightDibblePrice + price), dibbles: Math.round(length/priceConfig.lightDibbleDistance)};
+    return isHeavyDibble ? {price:(Math.round(length/priceConfig.heavyDibbleDistance) * priceConfig.heavyDibblePrice), dibbles:Math.round(length/priceConfig.heavyDibbleDistance)} : {price:(Math.round(length/priceConfig.lightDibbleDistance) * priceConfig.lightDibblePrice), dibbles: Math.round(length/priceConfig.lightDibbleDistance)};
 }
 const calculateShelfPrice = (shelfLength, shelfDepth)=>{
     let price = 0;
