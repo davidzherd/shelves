@@ -11,7 +11,7 @@ const ChangeSettings = ({close}) => {
   return (
     <Card className="message" style={{flexDirection: "column", gap: "2rem"}}>
         <div style={{display:"flex", alignItems: "center", justifyContent: "space-between"}}>
-        <Text color={colors.darkGreen} weight={"500"} scale={2}>Edit price settings</Text>
+        <Text color={colors.darkGreen} weight={"500"} scale={2}>You are logged in!</Text>
         </div>
         <div style={{display: "flex",flexDirection: "column", gap: "1rem", alignItems:"center", justifyContent:"center", textAlign:"center"}}>
         <Text color={colors.navi} weight={"500"} size={4}>This part of the app is still in development!</Text>

@@ -3,7 +3,8 @@ import styled from 'styled-components'
 import { colors } from '../assets/siteConfig';
 import { Text } from './Text';
 import { AdminContext } from '../Context';
-import { IoMdSettings } from 'react-icons/io';
+import { CiLogin } from "react-icons/ci";
+import { IoIosLogOut } from "react-icons/io";
 
 const StyledNavbar = styled.div`
 display: flex;
@@ -16,7 +17,7 @@ align-items: center;
 padding: 0 1rem;
 top: 0;
 left: 0;
-box-shadow: 2px 2px 10px ${colors.darkGreen};
+box-shadow: 1px 1px 5px ${colors.darkGreen};
 justify-content: space-between;
 .settings{
   display:flex;
@@ -30,22 +31,22 @@ justify-content: space-between;
   text-decoration: underline;
   }
   .icon{
-  transition: all 0.3s;
+  transition: all 0.1s;
   scale: 2;
   color: white;
   }
   .icon:hover{
-  rotate: 180deg;
+  opacity: 0.6;
   }
 `;
-const Navbar = ({settingsAction})=> {
+const Navbar = ({login, logout})=> {
   const adminCtx = useContext(AdminContext)
   return (
     <StyledNavbar>
         <Text size= {2} shadow weight= "300">Make a Shelf</Text>
-        <div className='settings' onClick={settingsAction}>
-        {!adminCtx ? "Login" : "You are logged in!"}
-        <IoMdSettings className='icon'/>
+        <div className='settings' onClick={adminCtx? logout : login}>
+        {!adminCtx ? "Login" : "Logout"}
+        {adminCtx ? <IoIosLogOut className='icon'/> : <CiLogin className='icon' />}
         </div>
 
     </StyledNavbar>

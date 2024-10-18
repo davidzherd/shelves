@@ -19,6 +19,7 @@ export const StyledPopUp = styled.div`
     transition: all 0.3s;
     .message{
     width:800px;
+    min-height: 400px;
     }
     @media(max-width:550px){
     .message{

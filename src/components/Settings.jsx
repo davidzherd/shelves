@@ -1,18 +1,14 @@
-import styled from "styled-components"
+
 import { StyledPopUp } from "./PopUp"
-import { Card } from "./Card"
-import { colors } from "../assets/siteConfig"
-import { Button } from "./Button"
-import { Text } from "./Text"
-import { Input } from "./Input"
-import { VscClose } from "react-icons/vsc";
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import Login from "./Login"
 import useAuth from "../hooks/useAuth"
 import ChangeSettings from "./ChangeSettings"
 import { readFromLocalStorage, saveToLocalStorage } from "../assets/storage"
+import { AdminContext } from "../Context"
 
 const Settings = ({bottom, settingsAction, updateAdmin}) => {
+  const adminCtx = useContext(AdminContext)
   const [currentToken,setCurrentToken] = useState("")
   const [authorized,setToken] = useAuth(currentToken)
 
@@ -32,8 +28,8 @@ const Settings = ({bottom, settingsAction, updateAdmin}) => {
 
   return (
     <StyledPopUp bottom={bottom}>
-      {!authorized && <Login setTokenFunction={(e)=>setCurrentToken(e)} close={settingsAction} />}
-      {authorized && <ChangeSettings close={settingsAction}/>}
+      {!adminCtx && <Login setTokenFunction={(e)=>setCurrentToken(e)} close={settingsAction} />}
+      {adminCtx && <ChangeSettings close={settingsAction}/>}
     </StyledPopUp>
   )
 }

@@ -62,8 +62,8 @@ const PriceCalculator = () => {
   
       return (
           <Wrapper background={"transparent"}>
-            <div style={{marginTop: "4rem"}}>
-              <Text size={4} shadow color={colors.lightGreen}>SHELF PRICE CALCULATOR</Text>
+            <div style={{marginTop: "4rem", width:"min(90%, 800px)", display:"flex", flexDirection:"column"}}>
+              <Text style={{alignSelf:"center"}} size={3} color={colors.lightGreen}>SHELF PRICE CALCULATOR</Text>
               <Card>
                 <Grid $columnsTemplate = {"1fr 1fr"}>
                 <Text color={colors.navi} weight={"500"}>Shelf Length (cm):</Text>
@@ -75,13 +75,14 @@ const PriceCalculator = () => {
                 </Grid>
               </Card>
               {error && <Text color={"red"} weight={"500"}>Please check your parameters, there seems to be a problem!</Text>}
-              {!error && <Card style={{flexDirection: "column", gap: "0.5rem"}}>
-                <Text color={colors.darkGreen} weight={"500"} size={2}>Final Bill:</Text>
-                <Text color={colors.navi} weight={"500"}>Shelf price: <span style={{color: "limegreen"}}>{price.shelfPrice.toFixed(2)}&#8362;</span></Text>
-                {conseeled && <Text color={colors.navi} weight={"500"}>Amount of dibbles: <span style={{color: colors.orange}}>{price.amountOfDibbles}</span></Text>}
-                {conseeled && <Text color={colors.navi} weight={"500"}>Type of dibbles: <span style={{color: colors.orange}}>{heavyDibble? "Heavy" : "Light"}</span></Text>}
-                {conseeled && <Text color={colors.navi} weight={"500"}>installation price: <span style={{color: "limegreen"}}>{price.installationPrice.toFixed(2)}&#8362;</span></Text>}
-                <Text color={colors.navi} weight={"500"}>Total price: <span style={{color: "limegreen"}}>{price.total.toFixed(2)}&#8362;</span></Text>
+              {!error && <Card style={{flexDirection: "column", gap: "0.8rem"}}>
+                <Text style={{marginBottom:"1rem"}} color={colors.darkGreen} weight={"500"} size={2}>Final Bill:</Text>
+                <Text color={colors.navi} weight={"500"}>Wood price: <span style={{color: "limegreen", fontWeight:"400"}}>{price.shelfPrice.toFixed(2)}&#8362;</span></Text>
+                {conseeled && <Text color={colors.navi} weight={"500"}>Amount of dibbles: <span style={{color: colors.orange, fontWeight:"400"}}>{price.amountOfDibbles}</span></Text>}
+                {conseeled && <Text color={colors.navi} weight={"500"}>Type of dibbles: <span style={{color: colors.orange, fontWeight:"400"}}>{heavyDibble? "Heavy" : "Light"}</span></Text>}
+                {conseeled && <Text color={colors.navi} weight={"500"}>Conseelment price: <span style={{color: "limegreen", fontWeight:"400"}}>{price.installationPrice.toFixed(2)}&#8362;</span></Text>}
+                <hr></hr>
+                <Text color={colors.navi} weight={"500"} style={{marginTop:"0.3rem"}}>Total price: <span style={{color: "limegreen", fontWeight:"500"}}>{price.total.toFixed(2)}&#8362;</span></Text>
               </Card>}
             </div>
           </Wrapper>

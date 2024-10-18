@@ -3,14 +3,15 @@ import { Wrapper } from './Wrapper'
 import { Text } from './Text'
 import { colors } from '../assets/siteConfig'
 
-const CreateOrder = () => {
+const Dashboard = () => {
   return (
     <Wrapper background={"transparent"}>
             <div style={{marginTop: "4rem"}}>
-              <Text size={4} shadow color={colors.lightGreen}>TEST</Text>
+              <Text size={3} shadow color={colors.lightGreen}>Admin Dashboard</Text>
+              
             </div>
           </Wrapper>
   )
 }
 
-export default CreateOrder
+export default Dashboard
