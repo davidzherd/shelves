@@ -4,7 +4,7 @@ export const Grid = styled.div`
 display: grid;
 grid-template-columns: ${props => props.$columnsTemplate ?? "1fr"};
 gap: 0.5rem;
-align-items: center;
+place-items:center end;
 
 @media (max-width: 500px) {
     grid-template-columns: 1fr;

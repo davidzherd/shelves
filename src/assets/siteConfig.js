@@ -8,3 +8,20 @@ export const colors = {
     darkGreen: "#6A9C89",
     orange: "#FFB534",
 };
+export const colorsV2 = {
+    bg: "hsl(220, 50%, 98%)",
+    white: "hsl(150, 25%, 98%)",
+    gray:"hsl(150, 10%, 96%)",
+    navi:"hsl(193, 26%, 28%)",
+    darkNavi:"hsl(195, 37%, 16%)",
+    lightNavi:"hsl(195, 16%, 48%)",
+    textLight:"hsl(196, 38%, 35%)",
+    textDark:"hsl(196, 38%, 15%)",
+    shadow:"hsl(210, 1%, 75%)",
+    accentBlue:"hsl(193, 46%, 96%)",
+    accentPink:"hsl(9, 49%, 67%)"
+}
+
+export function formatPrice(number) {
+    return `${number.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`;
+}

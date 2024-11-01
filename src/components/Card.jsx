@@ -1,11 +1,13 @@
 import styled from "styled-components";
-import { colors } from "../assets/siteConfig";
+import { colorsV2 } from "../assets/siteConfig";
 
 export const Card = styled.div`
 display: flex;
-margin-block: 1rem;
+flex-direction:column;
 background-color: white;
-box-shadow: 1px 2px 3px ${colors.navi};
+box-shadow: 0px 1px 5px 2px ${colorsV2.shadow};
 padding: 1rem;
-border-radius: 0.5rem;
+border-radius: ${props=> props.radius ?? "0.5rem"};
+flex-basis: 100%;
+gap:0.5rem;
 `;

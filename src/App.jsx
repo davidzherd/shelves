@@ -1,16 +1,36 @@
 import './global.css';
 import Navbar from './components/Navbar';
-import { useState } from 'react';
-import Settings from './components/settings';
+import { useEffect, useState } from 'react';
 import { AdminContext } from './Context';
-import PriceCalculator from './components/PriceCalculator';
 import Dashboard from './components/Dashboard';
-import { deleteFromLocalStorage } from './assets/storage';
+import { deleteFromLocalStorage, readFromLocalStorage, saveToLocalStorage } from './assets/storage';
+import SidePanel from './components/SidePanel';
+import Login from './components/Login';
+import useAuth from "./hooks/useAuth"
+import LoginImage from "./components/LoginImage"
+import { Wrapper } from './components/Wrapper';
+import useIsMobile from './hooks/useIsMobile';
 
 function App() {
 
   const [admin, setAdmin] = useState(false);
-  const [openedSettings, setOpenedSettings] = useState(false);
+  const [currentToken,setCurrentToken] = useState("")
+  const [authorized,setToken] = useAuth(currentToken)
+  const isMobile = useIsMobile(550)
+
+  useEffect(()=>{
+    setToken(currentToken)
+  },[currentToken])
+
+  useEffect(()=>{
+    if (authorized){
+      setAdmin(true)
+      saveToLocalStorage('shelfLoginToken', currentToken)
+    }else{
+      const savedToken = readFromLocalStorage('shelfLoginToken')
+      savedToken === null ? setAdmin(false) : setCurrentToken(savedToken)
+    }
+  },[authorized])
 
   const handleLogOut = ()=>{
     deleteFromLocalStorage('shelfLoginToken')
@@ -21,10 +41,18 @@ function App() {
 
     return (
       <AdminContext.Provider value={admin}>
-        <Navbar login={()=>setOpenedSettings(prev=>!prev)} logout={handleLogOut}/>
-          {!admin && <PriceCalculator/>}
-          {admin && <Dashboard/>}
-        <Settings bottom={openedSettings? "0": "-2000px"} settingsAction={()=>setOpenedSettings(prev=>!prev)}  updateAdmin={setAdmin}/>
+        <Navbar logout={handleLogOut}/>
+        <SidePanel/>
+        {!admin &&
+         <Wrapper
+          direction={isMobile? "column" : "row"}
+          justify="center"
+          align="center"
+         >
+           <LoginImage />
+           <Login setTokenFunction={(e)=>setCurrentToken(e)}/>
+         </Wrapper>}
+        {admin && <Dashboard/>}
       </AdminContext.Provider>
     )
   }

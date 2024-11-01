@@ -2,9 +2,11 @@ import styled from "styled-components";
 
 export const Wrapper = styled.div`
 display: flex;
-width: auto;
-height: auto;
-background: ${props => props.background ? props.background : "none"};
-margin-top: 4rem;
-justify-content:center;
+flex-direction:${props=>props.direction};
+width: ${props=> props.width};
+height: ${props=> props.height};
+background: ${props => props.background};
+align-items:${props=>props.align ?? "center"};
+justify-content:${props=>props.justify ?? "start"};
+gap: ${props=>props.gap ?? "none"}
 `;

@@ -11,7 +11,6 @@ export const getData = async()=>{
     const request = await fetch("https://x8ki-letl-twmt.n7.xano.io/api:sQvFNZLW/daniel_pricing");
     const rawData = await request.json();
     const data = rawData[0];
-    console.log(data);
     const newConfig = {heavyDibblePrice: parseFloat(data.heavy_dibble_price_10), lightDibblePrice: parseFloat(data.light_dibble_price), heavyDibbleDistance: parseFloat(data.heavy_10_dibble_distance), lightDibbleDistance: parseFloat(data.light_dibble_distance), woodPrice:{level1_14cm: parseFloat(data.wood_price.level1_14cm), level2_14cm: parseFloat(data.wood_price.level2_14cm), level3_14cm: parseFloat(data.wood_price.level3_14cm), level4_14cm: parseFloat(data.wood_price.level4_14cm), level1_27cm: parseFloat(data.wood_price.level1_27cm), level2_27cm: parseFloat(data.wood_price.level2_27cm), level3_27cm: parseFloat(data.wood_price.level3_27cm), level4_27cm: parseFloat(data.wood_price.level4_27cm)}, max_depth: data.max_depth };
     priceConfig = {...newConfig};
 }

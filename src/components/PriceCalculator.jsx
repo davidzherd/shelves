@@ -6,7 +6,7 @@ import { Input } from './Input';
 import { calculateTotalPrice, getData, priceConfig } from '../assets/logic';
 import { Grid } from './Grid';
 import { Checkbox } from './Checkbox';
-import { colors } from '../assets/siteConfig';
+import { colors, colorsV2 } from '../assets/siteConfig';
 import { TiDocumentText } from "react-icons/ti";
 
 const PriceCalculator = () => {
@@ -60,34 +60,42 @@ const PriceCalculator = () => {
       }
     },[data]);
   
-  
       return (
-          <Wrapper background={"transparent"}>
-            <div style={{marginTop: "4rem", width:"min(90%, 800px)", display:"flex", flexDirection:"column"}}>
-              <Text style={{alignSelf:"center"}} size={3} color={colors.lightGreen}>SHELF PRICE CALCULATOR</Text>
-              <Card style={{flexDirection:"column"}}>
-              <Text style={{marginBottom:"1rem"}} color={colors.darkGreen} weight={"500"} size={2}>Order Details:</Text>
-                <Grid $columnsTemplate = {"1fr 1fr"}>
-                <Text color={colors.navi} weight={"500"}>Shelf Length (cm):</Text>
-                <Input required onChange={(event)=>handlePropertiesChange(event, "length")} type='number'/>
-                <Text color={colors.navi} weight={"500"}>Shelf Depth (cm):</Text>
-                <Input color={error? "red" : colors.darkGreen} required onChange={(event)=>handlePropertiesChange(event, "depth")} type='number'/>
-                <Text color={colors.darkGreen} size={1.5}>Conseeled Support:</Text>
-                <Checkbox type='checkbox' onClick={(e)=>handleConseeled(e)}/>
-                </Grid>
-              </Card>
-              {error && <Text color={"red"} weight={"500"}>Please check your parameters, there seems to be a problem!</Text>}
-              {!error && <Card style={{flexDirection: "column", gap: "0.8rem"}}>
-                <Text style={{marginBottom:"1rem", display:"flex", alignItems:"center", justifyContent:"space-between"}} color={colors.darkGreen} weight={"500"} size={2}>Final Bill:<TiDocumentText style={{scale:"1.5"}} /></Text>
-                <Text color={colors.navi} weight={"500"}>Wood price: <span style={{color: "limegreen", fontWeight:"400"}}>{price.shelfPrice.toFixed(2)}&#8362;</span></Text>
-                {conseeled && <Text color={colors.navi} weight={"500"}>Amount of dibbles: <span style={{color: colors.orange, fontWeight:"400"}}>{price.amountOfDibbles}</span></Text>}
-                {conseeled && <Text color={colors.navi} weight={"500"}>Type of dibbles: <span style={{color: colors.orange, fontWeight:"400"}}>{heavyDibble? "Heavy" : "Light"}</span></Text>}
-                {conseeled && <Text color={colors.navi} weight={"500"}>Conseelment price: <span style={{color: "limegreen", fontWeight:"400"}}>{price.installationPrice.toFixed(2)}&#8362;</span></Text>}
-                <hr></hr>
-                <Text color={colors.navi} weight={"500"} style={{marginTop:"0.3rem"}}>Total price: <span style={{color: "limegreen", fontWeight:"500"}}>{price.total.toFixed(2)}&#8362;</span></Text>
-              </Card>}
+        <Wrapper style={{flexDirection:"column"}}>
+          <Text style={{alignSelf:"center"}} size={2} color={colorsV2.textLight}>מחשבון מחירים</Text>
+          <Card style={{alignSelf:"center", width:"95%", marginBlock:"1rem"}}>
+            <Text style={{marginBottom:"0.5rem"}} color={colorsV2.textLight} weight={"500"} size={1.2} side="end">:פרטי הזמנה</Text>
+            <div style={{display:"flex", alignItems:"center",justifyContent:"end", gap:"0.5rem"}}>
+            <Input width="50%" style={{alignSelf:"end"}} color={colorsV2.accentBlue} required onChange={(event)=>handlePropertiesChange(event, "length")} type='number'/>
+            <Text color={colorsV2.textDark} weight={"500"}>:אורך המדף (ס"מ)</Text>
             </div>
-          </Wrapper>
+            <div style={{display:"flex", alignItems:"center",justifyContent:"end", gap:"0.5rem"}}>
+            <Input width="50%" style={{alignSelf:"end"}} color={error? colorsV2.accentPink : colorsV2.accentBlue} required onChange={(event)=>handlePropertiesChange(event, "depth")} type='number'/>
+            <Text color={colorsV2.textDark} weight={"500"}>:רוחב המדף (ס"מ)</Text>
+            </div>
+            <div style={{display:"flex", alignItems:"center",justifyContent:"end", gap:"0.5rem"}}>
+              <Checkbox type='checkbox' onClick={(e)=>handleConseeled(e)} style={{scale:"1.5"}}/>
+              <Text color={colorsV2.textDark} size={1.2}>:תלייה נסתרת</Text>
+            </div>
+            <Text color={colorsV2.textDark} weight={"500"} side="end">המחרים הינם משוערים ואינם מדוייקים*</Text>
+            <Text color={colorsV2.textDark} weight={"500"} side="end">רוחב מדף מקסימאלי של {maxDepth} ס"מ*</Text>
+            <Text color={colorsV2.textDark} weight={"500"} side="end">ביצוע הזמנה מתבצע בשיחה טלפונית*</Text>
+          </Card>
+          {error && <Text style={{marginInline:"1rem"}} color={colorsV2.accentPink} weight={"500"} side="end">אנא בדוק שהפרטים שהזנת נכונים ולא עוברים את המגבלות</Text>}
+          {!error &&
+           <Card style={{flexDirection: "column", gap: "0.8rem", width:"95%"}}>
+            <Text style={{marginBottom:"1rem", display:"flex", alignItems:"center", justifyContent:"space-between"}} color={colorsV2.textLight} weight={"500"} size={1.2}><TiDocumentText style={{scale:"1.5"}} />חשבון</Text>
+            <Text color={colors.navi} weight={"500"}><span style={{color: "limegreen", fontWeight:"400"}}>&#8362;{price.shelfPrice.toFixed(2)}</span> :מחיר עץ</Text>
+            {conseeled && <Text color={colors.navi} weight={"500"}><span style={{color: colors.orange, fontWeight:"400"}}>{price.amountOfDibbles}</span> :כמות דיבלים</Text>}
+            <div style={{alignSelf:"end"}}>
+            {conseeled && <Text color={colors.navi} weight={"500"}><span style={{color: colors.orange, fontWeight:"400"}}>{heavyDibble? "כבדים" : "קלים"}</span></Text>}
+            {conseeled && <Text color={colors.navi} weight={"500"}> :סוג דיבלים</Text>}
+            </div>
+            {conseeled && <Text color={colors.navi} weight={"500"}><span style={{color: "limegreen", fontWeight:"400"}}>&#8362;{price.installationPrice.toFixed(2)}</span> :מחיר תלייה נסתרת</Text>}
+            <hr></hr>
+            <Text color={colors.navi} weight={"500"} style={{marginTop:"0.3rem"}}><span style={{color: "limegreen", fontWeight:"400"}}>&#8362;{price.total.toFixed(2)}</span> :מחיר סופי </Text>
+          </Card>}
+        </Wrapper>
       )
     }
   
