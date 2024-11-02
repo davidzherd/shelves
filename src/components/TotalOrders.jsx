@@ -12,7 +12,7 @@ const TotalOrders = ({ numOfOrders }) => {
         <Text size={2} color={colorsV2.textLight}>בוצעו סה"כ</Text>
         <Text size={4} color={colorsV2.accentPink}>{numOfOrders}</Text>
         <Text size={2} color={colorsV2.textLight}>הזמנות</Text>
-        <Button selected>לצפייה בכל ההזמנות</Button>
+        <Button>לצפייה בכל ההזמנות</Button>
     </Wrapper>
   )
 }

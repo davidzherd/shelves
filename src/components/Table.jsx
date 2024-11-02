@@ -20,12 +20,13 @@ border-radius: 0.5rem;
 `;
 export const TableBody = styled.div`
 width: 100%;
-height: 23%;
+height: 80%;
 overflow-y: scroll;
 `;
-const Table = ({ orders }) => {
+const Table = ({ orders, filter }) => {
+
   return (
-    <div style={{width:"100%"}}>
+    <div style={{width:"100%", height:"75%"}}>
         <TableHeader>
             <Text size={1.1} color={colorsV2.darkNavi}>מחיר <PiCashRegister size={16} /></Text>
             <Text size={1.1} color={colorsV2.darkNavi}>סטטוס <RiArrowDropDownLine size={16} /></Text>
@@ -33,7 +34,9 @@ const Table = ({ orders }) => {
             <Text size={1.1} color={colorsV2.darkNavi}>תאריך <FaCalendar size={16} /></Text>
         </TableHeader>
         <TableBody>
-          {orders.map((order)=>{return <Order key={order.id} order={order}/>})}
+          {orders.map((order)=>{
+            if (order.status !== filter) {return <Order key={order.id} order={order}/>}
+            })} 
         </TableBody>
     </div>
   )

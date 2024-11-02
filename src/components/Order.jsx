@@ -20,10 +20,16 @@ border-radius: 0.5rem;
 }
 `;
 const Order = ({ order }) => {
+  const statusTypes = {
+    new: "חדש",
+    inProgress: "בתהליך ייצור",
+    ready: "מוכן לאיסוף",
+    done: "הושלם"
+  }
   return (
     <OrderCard>
-        <Text color={colorsV2.textLight} size={1}>{order.price.toFixed(2)}&#8362;</Text>
-        <Text color={colorsV2.textDark} size={1}>{order.status}</Text>
+        <Text color={colorsV2.textLight} size={1}>&#8362;{order.price.toFixed(2)}</Text>
+        <Text color={colorsV2.textDark} size={1}>{statusTypes[order.status]}</Text>
         <Text color={colorsV2.textDark} size={1}>{order.name}</Text>
         <Text color={colorsV2.textDark} size={1}>{order.date}</Text>
     </OrderCard>

@@ -37,8 +37,6 @@ function App() {
     setAdmin(false)
   }
 
-
-
     return (
       <AdminContext.Provider value={admin}>
         <Navbar logout={handleLogOut}/>

@@ -5,9 +5,9 @@ export const Button = styled.button`
 display:flex;
 font-size: ${props => props.size || "1rem"};
 font-weight: ${props => props.weight || "400"};
-color: ${props => props.selected ? "white" : colorsV2.darkNavi};
+color: ${props => props.selected ? "white" : colorsV2.textLight};
 border-radius: 10px;
-border:  solid 1px ${colorsV2.darkNavi};
+border:  solid 1px ${colorsV2.textLight};
 background: ${props => props.selected ? colorsV2.lightNavi : "transparent"};
 text-justify: center;
 cursor: pointer;
