@@ -8,6 +8,7 @@ export const OrdersContext = createContext(
         allOrders:[],
         updateAllOrders: ()=>{},
         updateIncome: ()=>{},
-        updateTotalNumOrders: ()=>{}
+        updateTotalNumOrders: ()=>{},
+        updateDataObject: ()=>{}
     }
 )

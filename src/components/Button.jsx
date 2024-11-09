@@ -3,6 +3,8 @@ import { colorsV2 } from "../assets/siteConfig";
 
 export const Button = styled.button`
 display:flex;
+margin: ${props => props.margin};
+padding: ${props => props.padding};
 font-size: ${props => props.size || "1rem"};
 font-weight: ${props => props.weight || "400"};
 color: ${props => props.selected ? "white" : colorsV2.textLight};

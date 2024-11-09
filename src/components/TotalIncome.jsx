@@ -10,7 +10,7 @@ const TotalIncome = ({ income }) => {
     direction="column"
     gap="0.5rem">
         <Text size={2} color={colorsV2.textLight}>הורווחו סה"כ </Text>
-        <Text size={4} color={colorsV2.accentPink}>&#8362;{formattedIncome}</Text>
+        <Text size={4} color={colorsV2.accentPurple}>&#8362;{formattedIncome}</Text>
         <Text size={2} color={colorsV2.textLight}>מתחילת העבודה</Text>
     </Wrapper>
   )

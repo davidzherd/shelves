@@ -64,14 +64,14 @@ const Login = ({setTokenFunction}) => {
       justify="end"
       gap="0.5rem"
       width="50%">
-        <Input style={{alignSelf:"end", flexGrow:"1"}} color={colorsV2.accentBlue} onChange={(e)=>handleInput("email",e)}></Input>
+        <Input style={{alignSelf:"end", flexGrow:"1"}} color={colorsV2.accentLightPurple} onChange={(e)=>handleInput("email",e)}></Input>
         <Text color={colors.navi} weight={"500"} side="end" size={1.2}>:דוא"ל</Text>
       </Wrapper>
       <Wrapper
       justify="end"
       gap="0.5rem"
       width="50%">
-        <Input type="password" style={{alignSelf:"end", flexGrow:"1"}} color={colorsV2.accentBlue} onChange={(e)=>handleInput("password",e)}></Input>
+        <Input type="password" style={{alignSelf:"end", flexGrow:"1"}} color={colorsV2.accentLightPurple} onChange={(e)=>handleInput("password",e)}></Input>
         <Text color={colors.navi} weight={"500"} side="end" size={1.2}>:סיסמה</Text>
       </Wrapper>
       <Wrapper

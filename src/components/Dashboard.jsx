@@ -13,7 +13,7 @@ import CreateOrder from './CreateOrder'
 
 const Dashboard = () => {
 
-  const [data,loading,error] = useApi('https://x8ki-letl-twmt.n7.xano.io/api:sQvFNZLW/orders')
+  const [data,loading,error,setData] = useApi('https://x8ki-letl-twmt.n7.xano.io/api:sQvFNZLW/orders')
   const [allOrders, setAllOrders] = useState([])
   const [numOrders, setNumOrders] = useState(0)
   const [totalIncome, setTotalIncome] = useState(0.0)
@@ -23,8 +23,9 @@ const Dashboard = () => {
       data.total && setNumOrders(data.total)
       data.income && setTotalIncome(data.income.total_income)
   },[data])
+  
   return (
-    <OrdersContext.Provider value={{allOrders: allOrders, totalIncome:totalIncome, totalNumberOrders:numOrders, updateAllOrders:(array)=>setAllOrders(array), updateIncome: (number)=>setTotalIncome(number), updateTotalNumOrders: (number)=>setAllOrders(number)}}>
+    <OrdersContext.Provider value={{allOrders: allOrders, totalIncome:totalIncome, totalNumberOrders:numOrders, updateAllOrders:(array)=>setAllOrders(array), updateIncome: (number)=>setTotalIncome(number), updateTotalNumOrders: (number)=>setAllOrders(number), updateDataObject: (object)=>setData(object)}}>
     <Wrapper
      background="transparent" 
      align="center"
