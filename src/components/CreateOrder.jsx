@@ -84,7 +84,7 @@ const CreateOrder = () => {
             </Wrapper>
         </Wrapper>
         </form>
-        {orderCreatedPopUp && <OrderCreatedPopUp action={()=>setOrderCreatedPopUp(false)} />}
+        {orderCreatedPopUp && <OrderCreatedPopUp action={()=>setOrderCreatedPopUp(false)} success={false} />}
         </>
   )
 }
