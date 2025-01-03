@@ -4,6 +4,7 @@ import { colorsV2 } from "../assets/siteConfig";
 import { Text } from "./Text";
 import { statusTypes } from "../assets/siteConfig";
 import { EditOrderContext } from "../Context";
+import Dropdown from "./Dropdown";
 const OrderCard = styled.div`
   width: 95%;
   display: grid;
@@ -32,9 +33,7 @@ const Order = ({ order }) => {
       <Text color={colorsV2.textLight} size={1}>
         &#8362;{order.price.toFixed(2)}
       </Text>
-      <Text color={colorsV2.textDark} size={1}>
-        {statusTypes[order.status]}
-      </Text>
+      <Dropdown order={order}></Dropdown>
       <Text color={colorsV2.textDark} size={1}>
         {order.name}
       </Text>

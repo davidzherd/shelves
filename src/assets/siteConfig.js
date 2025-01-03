@@ -30,6 +30,14 @@ export const statusTypes = {
   inProgress: "בתהליך ייצור",
   ready: "מוכן לאיסוף",
   done: "הושלם",
+  statusArray: () => {
+    return [
+      statusTypes.new,
+      statusTypes.inProgress,
+      statusTypes.ready,
+      statusTypes.done,
+    ];
+  },
 };
 export function formatPrice(number) {
   return `${number.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`;
