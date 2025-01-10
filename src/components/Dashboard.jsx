@@ -12,6 +12,7 @@ import { EditOrderContext, OrdersContext } from "../Context";
 import CreateOrder from "./CreateOrder";
 import { StyledPopUp } from "./PopUp";
 import EditOrder from "./EditOrder";
+import { Button } from "./Button";
 
 const Dashboard = () => {
   const [data, loading, error, setData] = useApi(
@@ -22,7 +23,7 @@ const Dashboard = () => {
   const [totalIncome, setTotalIncome] = useState(0.0);
   const [selectedOrder, setSelectedOrder] = useState({});
   const [editMode, setEditMode] = useState(false);
-
+  const [showAllOrders, setShowAllOrders] = useState(false);
   useEffect(() => {
     data.orders && setAllOrders(data.orders);
     data.orders && setSelectedOrder(data.orders[0]);
@@ -117,7 +118,12 @@ const Dashboard = () => {
                 />
               )}
               {error && <EmptyStateText size={1} color={colorsV2.textDark} />}
-              {data.total && <TotalOrders numOfOrders={numOrders} />}
+              {data.total && (
+                <TotalOrders
+                  numOfOrders={numOrders}
+                  action={() => setShowAllOrders(true)}
+                />
+              )}
             </Card>
             <Card
               style={{
@@ -162,6 +168,26 @@ const Dashboard = () => {
       </Wrapper>
       {editMode && (
         <EditOrder order={selectedOrder} onClose={() => setEditMode(false)} />
+      )}
+      {showAllOrders && (
+        <StyledPopUp>
+          <EditOrderContext.Provider
+            value={{
+              selectedOrder: selectedOrder,
+              updateEditMode: setEditMode,
+              updateSelectedOrder: setSelectedOrder,
+            }}
+          >
+            <Card width="80%" height="60%" alignItems="center">
+              <Text size={2} color={colorsV2.textLight}>
+                כל ההזמנות
+              </Text>
+              <hr style={{ width: "95%" }} />
+              <Table orders={allOrders} />
+              <Button onClick={() => setShowAllOrders(false)}>סגור</Button>
+            </Card>
+          </EditOrderContext.Provider>
+        </StyledPopUp>
       )}
     </OrdersContext.Provider>
   );

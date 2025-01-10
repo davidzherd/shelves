@@ -17,6 +17,7 @@ export const StyledDropdown = styled.select`
   text-align: end;
   font-size: 1rem;
   box-shadow: 3px 3px 10px ${colorsV2.shadow};
+  cursor: pointer;
 `;
 
 const Dropdown = ({ order }) => {

@@ -58,3 +58,17 @@ export function formatDate(date) {
   // Return the formatted date as "dd-mm-yyyy"
   return day + "-" + month + "-" + year;
 }
+export const dateDifference = (dateString) => {
+  // date string is dd-mm-yyyy
+  const [day, month, year] = dateString.split("-");
+  // Create date object using the correct order
+  const dateObj = new Date(year, month - 1, day); // month is 0-based in JavaScript
+
+  // Get current date and reset time portion
+  const currentDate = new Date();
+  currentDate.setHours(0, 0, 0, 0);
+  dateObj.setHours(0, 0, 0, 0);
+
+  const timeDifference = currentDate.getTime() - dateObj.getTime();
+  return Math.max(0, Math.floor(timeDifference / (1000 * 60 * 60 * 24)));
+};
