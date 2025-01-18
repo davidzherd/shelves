@@ -118,7 +118,7 @@ const Dashboard = () => {
                 />
               )}
               {error && <EmptyStateText size={1} color={colorsV2.textDark} />}
-              {data.total && (
+              {data.total !== undefined && (
                 <TotalOrders
                   numOfOrders={numOrders}
                   action={() => setShowAllOrders(true)}
